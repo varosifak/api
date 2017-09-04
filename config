@@ -1,0 +1,13 @@
+<?php
+/**
+ * Nevezd át ezt a fájlt config.php-ra, ha szeretnéd az API-t saját használatra is elkészíteni.
+ * A config.php-t nem tartalmazzák a commitok, ignorálva van a Git által!
+ */
+define("DB_TYPE",               "mysql");
+define("DB_HOST",               "localhost");
+define("DB_USER",               "DBUSER");
+define("DB_PASS",               "DBPASSWORD");
+define("DB_NAME",               "DBNAME");
+define("DB_CHARSET",            "utf8");
+define("MAINTENANCE",           false);
+?>
