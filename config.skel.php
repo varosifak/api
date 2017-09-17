@@ -1,7 +1,12 @@
 <?php
 /**
- * Nevezd át ezt a fájlt config.php-ra, ha szeretnéd az API-t saját használatra is elkészíteni.
- * A config.php-t nem tartalmazzák a commitok, ignorálva van a Git által!
+ * PHP Version 7.1
+ *
+ * @category Configuration
+ * @package  ApplicationProgrammingInterface
+ * @author   Alex Szarka <xavvior@gmail.com>
+ * @license  BY-NC-SA 4.0 | https://creativecommons.org/licenses/by-nc-sa/4.0/
+ * @link     https://github.com/varosifak/api
  */
 define("DB_TYPE",               "mysql");
 define("DB_HOST",               "localhost");
