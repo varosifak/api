@@ -11,9 +11,9 @@ class Rogzites extends BaseModule
     {
         $input = json_decode(file_get_contents('php://input'), true);
 
-        $fp = fopen('DATA.json', 'w');
-        fwrite($fp, json_encode($input));
-        fclose($fp);
+        $fp = @fopen('DATA.json', 'w');
+        @fwrite($fp, json_encode($input));
+        @fclose($fp);
 
         $authData = array(@$input["auth_token"], @$input["neptun"], @$input["szektor"], @$input["utca"], @$input["felev"]);
         $checkAuth = Database::select("SELECT * FROM authentication WHERE auth_token=? AND neptun_kod=? AND szektor_id=? AND utca_id=? AND felev=?", $authData);
