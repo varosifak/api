@@ -32,7 +32,7 @@ class FelvittLista extends BaseModule
     }
 
     public function acceptedList(){
-        $falista = Database::select("SELECT * FROM fa_rogzitesek WHERE szektor_id = ? AND utca_id = ? AND felev = ?",
+        $falista = Database::select("SELECT fa_rogzitesek.*, users.nev FROM fa_rogzitesek INNER JOIN users ON users.neptun=fa_rogzitesek.neptun WHERE szektor_id = ? AND utca_id = ? AND felev = ? ORDER BY fa_egyedi_id DESC",
             array($_GET["szektor"], $_GET["utca"], $_GET["felev"])
         );
         for($i=0;$i<count($falista);$i++){
