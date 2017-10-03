@@ -1,11 +1,4 @@
 <?php
-
-/**
- * Created by PhpStorm.
- * User: xavvi
- * Date: 2017. 09. 29.
- * Time: 12:34
- */
 class FelvittLista extends BaseModule
 {
     public function __construct()
@@ -42,6 +35,9 @@ class FelvittLista extends BaseModule
         $falista = Database::select("SELECT * FROM fa_rogzitesek WHERE szektor_id = ? AND utca_id = ? AND felev = ?",
             array($_GET["szektor"], $_GET["utca"], $_GET["felev"])
         );
+        for($i=0;$i<count($falista);$i++){
+            $falista[$i]["json"] = json_decode($falista[$i]["json"]);
+        }
 
         return $falista;
     }
