@@ -14,7 +14,7 @@ class FelvittLista extends BaseModule
             $data["status"] = 0;
             $data["message"] = "A hitelesítés nem sikerült!";
         }else{
-            if(isset($_GET["action"]) && $_GET["action"]=="piszkozat"){
+            if(isset($_GET["action2"]) && $_GET["action2"]=="piszkozat"){
                 $data["trees"] = $this->reviewList();
             }else{
                 $data["trees"] = $this->acceptedList();
