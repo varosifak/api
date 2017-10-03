@@ -24,7 +24,7 @@ class FelvittLista extends BaseModule
                 $data["message"] = "Még egy felvitt fa sincs az adatbázisban!";
             }
         }
-        print json_encode($data);
+        print json_encode($data, JSON_PRETTY_PRINT);
     }
 
     public function reviewList(){
