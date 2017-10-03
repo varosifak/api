@@ -28,11 +28,17 @@ class FelvittLista extends BaseModule
     }
 
     public function reviewList(){
-        //TODO
+        $falista = Database::select("SELECT fa_rogzitesek.*, users.nev FROM fa_rogzitesek INNER JOIN users ON users.neptun=fa_rogzitesek.neptun_kod WHERE szektor_id = ? AND utca_id = ? AND felev = ? AND piszkozat=1 ORDER BY fa_egyedi_id DESC",
+            array($_GET["szektor"], $_GET["utca"], $_GET["felev"])
+        );
+        for($i=0;$i<count($falista);$i++){
+            $falista[$i]["json"] = json_decode($falista[$i]["json"]);
+        }
+        return $falista;
     }
 
     public function acceptedList(){
-        $falista = Database::select("SELECT fa_rogzitesek.*, users.nev FROM fa_rogzitesek INNER JOIN users ON users.neptun=fa_rogzitesek.neptun_kod WHERE szektor_id = ? AND utca_id = ? AND felev = ? ORDER BY fa_egyedi_id DESC",
+        $falista = Database::select("SELECT fa_rogzitesek.*, users.nev FROM fa_rogzitesek INNER JOIN users ON users.neptun=fa_rogzitesek.neptun_kod WHERE szektor_id = ? AND utca_id = ? AND felev = ? AND piszkozat=0 ORDER BY fa_egyedi_id DESC",
             array($_GET["szektor"], $_GET["utca"], $_GET["felev"])
         );
         for($i=0;$i<count($falista);$i++){
