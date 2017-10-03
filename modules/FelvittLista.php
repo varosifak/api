@@ -21,7 +21,11 @@ class FelvittLista extends BaseModule
             }
             if(count($data["trees"])==0) {
                 $data["status"] = 2;
-                $data["message"] = "Még egy felvitt fa sincs az adatbázisban!";
+                if(isset($_GET["action2"]) && $_GET["action2"]=="piszkozat") {
+                    $data["message"] = "Nincsenek döntésre váró piszkozatok!";
+                }else{
+                    $data["message"] = "Még egy felvitt fa sincs az adatbázisban!";
+                }
             }
         }
         print json_encode($data, JSON_PRETTY_PRINT);
