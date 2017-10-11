@@ -10,9 +10,9 @@
  */
 define("DB_TYPE",               "mysql");
 define("DB_HOST",               "localhost");
-define("DB_USER",               "DBUSER");
-define("DB_PASS",               "DBPASSWORD");
-define("DB_NAME",               "DBNAME");
+define("DB_USER",               "root");
+define("DB_PASS",               "Qwedesdayztghui2");
+define("DB_NAME",               "varosifak_dev2");
 define("DB_CHARSET",            "utf8");
 define("MAINTENANCE",           false);
 ?>

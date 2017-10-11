@@ -76,7 +76,7 @@ class Rogzites extends BaseModule
         print json_encode($data);
     }
 
-    private function base64_to_jpeg($sorszam, $iid, $felev, $base64_string)
+    private function base64_to_jpeg($sorszam, $iid, $felev)
     {
         $felev = str_replace("/", "-", $felev);
         if (!is_dir('images/'.$felev)) {

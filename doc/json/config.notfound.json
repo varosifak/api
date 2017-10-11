@@ -1,0 +1,8 @@
+{
+  "index":{
+    "status": {
+      "code": 0,
+      "message": "The config.php file is missing. Please create a copy from config.skel.php as config.php and edit."
+    }
+  }
+}
