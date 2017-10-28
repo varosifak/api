@@ -3,7 +3,7 @@ namespace MicroLight\Components;
 class Configuration
 {
     public static $version = "1.0.0";
-    public static function loadConfig($configurationFilePatch){
+    public static function loadConfig($configurationFilePatch): void{
         $configData = array('version' => '1.0.0');
         if(!is_file($configurationFilePatch)){
             $configData = array_merge(
@@ -11,7 +11,7 @@ class Configuration
                 array('code' => 404, 'message' => 'Configuration file is not exists!')
             );
         }else{
-            include $configurationFilePatch;
+            require_once $configurationFilePatch;
             $configData = array_merge(
                 $configData,
                 array('code' => 200)
