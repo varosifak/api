@@ -8,6 +8,10 @@ class JSON
         return JSON::$dataSet;
     }
     public static function set($namespace, $array) : void {
-        JSON::$dataSet[$namespace] = array_merge(JSON::$dataSet, $array);
+        if(isset(JSON::$dataSet[$namespace])) {
+            JSON::$dataSet[$namespace] = array_merge(JSON::$dataSet, $array);
+        }else{
+            JSON::$dataSet[$namespace] = $array;
+        }
     }
 }

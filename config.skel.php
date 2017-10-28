@@ -15,4 +15,5 @@ define("DB_PASS",               "");
 define("DB_NAME",               "");
 define("DB_CHARSET",            "utf8");
 define("MAINTENANCE",           false);
+define("DB_CONNECTION",         DB_TYPE . ':host=' . DB_HOST . ";dbname=" . DB_NAME);
 ?>
