@@ -3,7 +3,7 @@ namespace MicroLight\Components;
 class Configuration
 {
     public static $version = "1.0.0";
-    public static function loadConfig($configurationFilePatch): void{
+    public static function loadConfig($configurationFilePatch){
         $configData = array('version' => '1.0.0');
         if(!is_file($configurationFilePatch)){
             $configData = array_merge(

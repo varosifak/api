@@ -12,7 +12,6 @@ require_once "rb.php";
 Configuration::loadConfig("config.php");
 Configuration::serializeRequests($_GET);
 R::setup(DB_CONNECTION, DB_USER, DB_PASS);
-$user = new User();
-$user->save();
+require "routing.php";
 print json_encode(JSON::get(), JSON_PRETTY_PRINT);
 R::close();

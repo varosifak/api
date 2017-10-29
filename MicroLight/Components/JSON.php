@@ -7,7 +7,7 @@ class JSON
     public static function get() : array {
         return JSON::$dataSet;
     }
-    public static function set($namespace, $array) : void {
+    public static function set($namespace, $array) {
         if(isset(JSON::$dataSet[$namespace])) {
             JSON::$dataSet[$namespace] = array_merge(JSON::$dataSet, $array);
         }else{

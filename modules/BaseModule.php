@@ -1,11 +1,9 @@
 <?php
-
 abstract class BaseModule
 {
-    abstract public function entryPoint();
-
-    public function __construct()
-    {
-        $this->entryPoint();
-    }
+    abstract static public function any();
+    abstract static public function get();
+    abstract static public function post();
+    abstract static public function delete();
+    abstract static public function put();
 }

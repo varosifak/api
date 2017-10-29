@@ -4,6 +4,7 @@ use \MicroLight\Components\JSON as JSON;
 
 abstract class BeansBase extends \RedBean_SimpleModel
 {
+    public static $version = "1.0.0";
     protected $id;
     protected $attributes;
     protected $classname;
@@ -14,31 +15,6 @@ abstract class BeansBase extends \RedBean_SimpleModel
     {
         $classInfo = explode('\\', get_class($this));
         $this->classname = strtolower(array_pop($classInfo)) . 's';
-        if ($condition) {
-            $this->node = R::findOne($this->classname, ' ' . $condition . ' ');
-            if ($this->node) {
-                $this->id = $this->node->id;
-                $userDataSet = array(
-                    'code' => 200,
-                    'message' => 'User has been found with ' . $condition . ' conditions.',
-                    'id' => $this->id
-                );
-                $this->node->setMeta("buildcommand.unique", $this->uniqueInformations);
-            } else {
-                $userDataSet = array(
-                    'code' => 404,
-                    'message' => 'User not found with ' . $condition . ' conditions.'
-                );
-            }
-        } else {
-            $this->node = R::dispense($this->classname);
-            $userDataSet = array(
-                'code' => 201,
-                'message' => 'New user object has been created.'
-            );
-            $this->node->setMeta("buildcommand.unique", $this->uniqueInformations);
-        }
-        JSON::set('user', $userDataSet);
     }
 
     public
@@ -87,5 +63,14 @@ abstract class BeansBase extends \RedBean_SimpleModel
             $this->node = $this->copyAttributes($this->node);
         }
         return R::store($this->node);
+    }
+    public function delete(){
+        R::trash( $this->node );
+    }
+    public function refresh(){
+        $this->node = $this->node->fresh();
+    }
+    public static function wipe($bean){
+        R::wipe($bean);
     }
 }

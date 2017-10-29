@@ -6,11 +6,11 @@ use PHPUnit\Framework\TestCase;
 class TestFilesVersioning extends TestCase
 {
     private $skeletonIds = [
-        array('config.skel.php' => '9b600e866804883011ff24bb373043972bcc565b'),
-        array('index.php' => '023fe37d8ad5705c8c63e317ac563d5062107955')
+        array('config.skel.php' => '19681aa53632cf534f035e6eedc27d63299ac658'),
+        array('index.php' => '7983b188fe50f816c9afe05f7373bf227faf947f')
     ];
 
-    public function testSkeletonVersion(): void
+    public function testSkeletonVersion()
     {
         foreach ($this->skeletonIds as $skeletonId) {
             $filename = key($skeletonId);
