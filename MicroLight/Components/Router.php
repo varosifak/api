@@ -9,6 +9,7 @@
 namespace MicroLight\Components;
 abstract class Router
 {
+    public static $version = "0.0.1";
     private static function parser(): string{
         $first = explode("&", $_SERVER["QUERY_STRING"])[0];
         return !empty($first) ? $first:"main";

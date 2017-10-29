@@ -1,6 +1,7 @@
 <?php
 abstract class BaseModule
 {
+    public static $version = "1.0.0";
     abstract static public function any();
     abstract static public function get();
     abstract static public function post();
