@@ -48,7 +48,7 @@ class FelvittLista extends BaseModule
         for($i=0;$i<count($falista);$i++){
             $falista[$i]["json"] = json_decode($falista[$i]["json"]);
             $fareszlet = Database::select("SELECT * FROM fa_fajok WHERE id='".$falista[$i]["json"]->fa_fajta."'");
-            $falista[$i]["fareszlet"] = $fareszlet[0];
+            $falista[$i]["fareszlet"] = @$fareszlet[0];
         }
 
         return $falista;
