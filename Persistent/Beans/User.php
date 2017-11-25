@@ -1,5 +1,4 @@
 <?php
-use \MicroLight\Components\JSON as JSON;
 class User extends BeansBase
 {
     public static $version = "0.0.1";
@@ -23,7 +22,6 @@ class User extends BeansBase
                 );
             }
         } else {
-            $this->node = R::dispense($this->classname);
             $userDataSet = array(
                 'code' => 201,
                 'message' => 'New user object has been created.'

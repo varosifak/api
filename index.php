@@ -1,8 +1,4 @@
 <?php
-
-use \MicroLight\Components\Configuration as Configuration;
-use \MicroLight\Components\JSON as JSON;
-
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: text/json; charset=utf-8');
@@ -12,6 +8,10 @@ require_once "rb.php";
 Configuration::loadConfig("config.php");
 Configuration::serializeRequests($_GET);
 R::setup(DB_CONNECTION, DB_USER, DB_PASS);
-require "routing.php";
+if (MAINTENANCE) {
+    JSON::set('maintenance', array('code' => 403, 'message' => 'There is currently maintenance. Try again later.'));
+} else {
+    require "routing.php";
+}
 print json_encode(JSON::get(), JSON_PRETTY_PRINT);
 R::close();

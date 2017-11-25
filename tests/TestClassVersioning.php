@@ -16,13 +16,14 @@ class TestClassVersioning extends TestCase
      * renew the UUID.
      */
     private $classes = [
-        array(JSON::class, '1.0.0-f4ffdf8390ebb1c203b389906b45a1e28931df67'),
-        array(Configuration::class, '1.0.0-1d2e978abcf8c719ec065d3cfed2123504c3d31f'),
-        array(Router::class, '0.0.1-40652342c192d84a8e49b86c4026a507632c6992'),
+        array(JSON::class, '1.0.1-082fc90a216bcf0231769f0631c2aa4da40e74fc'),
+        array(Configuration::class, '1.0.1-38b6d998a4a5c63d5a923f75dde8e89f2b39702a'),
+        array(Router::class, '1.0.0-904d2e1dedb36d0cb4d0b8aeb2df4d6ec05289cc'),
         array(BeansBase::class, '1.0.0-0de1927f102f3047cda4d3beb3a127fe00246a5d'),
+        array(Authentication::class, '1.0.0-86980779726665ce08b266a0fab64e734622a673'),
         array(User::class, '0.0.1-ce5fcd2437f6bc585927d008662de507f9ed9ecf'),
-        array(BaseModule::class, '1.0.0-7a22acfc8f82409384d6babd362de111d4ba651b'),
-        array(Main::class, '1.0.0-b99a4acc25db0cebcc6b61a76d562f51be03b787'),
+        array(BaseModule::class, '1.0.1-cbcdb96774c252e3a76dac89e6abb1b22e32221d'),
+        array(Main::class, '1.0.1-36a70a1dda7882ff5ea6044c11f2682bebdd59d1'),
     ];
 
     public function testClassVersions()
