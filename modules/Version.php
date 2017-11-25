@@ -139,7 +139,7 @@ abstract class Version extends BaseModule
                 R::exec("DELETE FROM Version WHERE major=? AND minor=? AND patch=?",
                     [$params["major"],$params["minor"],$params["patch"]]);
                 $info = array(
-                    'code' => 0,
+                    'code' => 1,
                     'message' => "The version (".$params["major"].".".$params["minor"].".".$params["patch"].") has been removed from the database"
                 );
             }else {
