@@ -11,6 +11,6 @@ abstract class Main extends BaseModule
             'help' => 'To use API, please read the documentation.'
         );
         if (DEBUG) JSON::set("debug", array($params));
-        JSON::set("main", $info);
+        JSON::set(get_class(), $info);
     }
 }

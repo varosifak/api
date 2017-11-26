@@ -57,14 +57,14 @@ abstract class Version extends BaseModule
             $info = array_merge($info, array("versions" => ["application" => implode(".", $versioning), "last" => implode(".", $last)]));
         }
         if (DEBUG) JSON::set("debug", array($params));
-        JSON::set("Version", $info, self::$version);
+        JSON::set(get_class(), $info, self::$version);
     }
 
     static public function post($params): void
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'major', 'minor', 'patch', 'changes']);
         if (!$req[0]) {
-            JSON::set("Version", array(
+            JSON::set(get_class(), array(
                 'code' => 400,
                 'message' => "Bad Request, missing parameters (" . implode(", ", $req[1]) . ")",
                 'tip' => 'Log out the user, because an important parameter is missing.'
@@ -110,14 +110,14 @@ abstract class Version extends BaseModule
                 'message' => "You do not have enough permission for this."
             );
         }
-        JSON::set("Version", $info, self::$version);
+        JSON::set(get_class(), $info, self::$version);
     }
 
     static public function delete($params): void
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'major', 'minor', 'patch']);
         if (!$req[0]) {
-            JSON::set("Version", array(
+            JSON::set(get_class(), array(
                 'code' => 400,
                 'message' => "Bad Request, missing parameters (" . implode(", ", $req[1]) . ")",
                 'tip' => 'Log out the user, because an important parameter is missing.'
@@ -154,7 +154,7 @@ abstract class Version extends BaseModule
                 'message' => "You do not have enough permission for this."
             );
         }
-        JSON::set("Version", $info, self::$version);
+        JSON::set(get_class(), $info, self::$version);
     }
 
 }

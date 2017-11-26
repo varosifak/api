@@ -14,6 +14,10 @@ rekordokat az adatbázisból.
 ### PATCH kérések (**U**pdate)
 A PATCH kérések során a JSON-ban kapott adatok alapján frissít rekordot/rekordokat az adatbázisban.
 
-### PUT kérések (*Upload*)
+### PUT kérések (Upload)
 A PUT kérések során Multipart adatokat lehet felküldeni a szerverre. Például képeket.
 A CRUD szerkezetbe nem tartozik bele, viszont tulajdonképpen egy speciális CREATE-ről van szó.
+
+### PROPFIND kérések (Search)
+A PROPFIND kérések során keresést lehet végezni az adatbázisban a megfelelő jogosultsággal rendelkezve.
+A PROPFIND minden eleme feldolgozásra kerül kivéve az authentikációval kapcsolatos paraméterek.

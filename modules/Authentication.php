@@ -16,25 +16,25 @@ abstract class Authentication extends BaseModule
         } else {
             $dataOfAuthParams = AuthModel::checkAuthenticated($params);
             if ($dataOfAuthParams == NULL) {
-                $info = array(
+                JSON::set(get_class(), array(
                     'code' => 404,
                     'message' => "The data of authentication parameters is not found.",
                     'tip' => 'We recommend, that log out the user from the session.'
-                );
-            } else {
-                $info = array(
-                    'code' => 200,
-                    'message' => "The user has been successful authenticated.",
-                    'neptun_kod' => $dataOfAuthParams->neptun_kod,
-                    'szektor_id' => $dataOfAuthParams->szektor_id,
-                    'utca_id' => $dataOfAuthParams->utca_id,
-                    'felev' => $dataOfAuthParams->felev,
-                    'help' => 'Alright. Nothing to do.'
-                );
+                ), self::$version);
+                return;
             }
+            $info = array(
+                'code' => 200,
+                'message' => "The user has been successful authenticated.",
+                'neptun_kod' => $dataOfAuthParams->neptun_kod,
+                'szektor_id' => $dataOfAuthParams->szektor_id,
+                'utca_id' => $dataOfAuthParams->utca_id,
+                'felev' => $dataOfAuthParams->felev,
+                'help' => 'Alright. Nothing to do.'
+            );
         }
         if (DEBUG) JSON::set("debug", array($params));
-        JSON::set("Authentication", $info, self::$version);
+        JSON::set(get_class(), $info, self::$version);
     }
 
     static public function post($params): void
@@ -46,7 +46,7 @@ abstract class Authentication extends BaseModule
                 'message' => "Bad Request, missing parameters (" . implode(", ", $req[1]) . ")",
                 'tip' => 'To use API, please read the documentation.'
             );
-            JSON::set("Authentication", $info, self::$version);
+            JSON::set(get_class(), $info, self::$version);
             return;
         }
         $user = R::findOne('UsersUtcak', ' neptun_kod = ? AND szektor_id = ? AND utca_id = ? AND felev = ?',
@@ -83,14 +83,14 @@ abstract class Authentication extends BaseModule
             );
         }
         if (DEBUG) JSON::set("debug", array($params));
-        JSON::set("Authentication", $info, self::$version);
+        JSON::set(get_class(), $info, self::$version);
     }
 
     static public function delete($params): void
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev']);
         if (!$req[0]) {
-            JSON::set("Authentication", array(
+            JSON::set(get_class(), array(
                 'code' => 400,
                 'message' => "Bad Request, missing parameters (" . implode(", ", $req[1]) . ")",
                 'tip' => 'Log out the user, because an important parameter is missing.'
@@ -116,6 +116,6 @@ abstract class Authentication extends BaseModule
             );
         }
         if (DEBUG) JSON::set("debug", array($params));
-        JSON::set("Authentication", $info, self::$version);
+        JSON::set(get_class(), $info, self::$version);
     }
 }

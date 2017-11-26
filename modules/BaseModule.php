@@ -1,4 +1,5 @@
 <?php
+
 abstract class BaseModule
 {
     public static $version = "1.0.1";
@@ -25,4 +26,6 @@ abstract class BaseModule
     abstract static public function put(): void;
 
     abstract static public function patch($params): void;
+
+    abstract static public function propfind($params): void;
 }

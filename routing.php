@@ -14,6 +14,23 @@ Router::post("Felevek", "Felevek");
 Router::delete("Felevek", "Felevek");
 Router::patch("Felevek", "Felevek");
 
-
+Router::get("Users", "Users");
 Router::post("Users", "Users");
+Router::patch("Users", "Users");
 Router::delete("Users", "Users");
+Router::propfind("Users", "Users");
+
+Router::get("FaFajok", "FaFajok");
+Router::post("FaFajok", "FaFajok");
+Router::delete("FaFajok", "FaFajok");
+Router::patch("FaFajok", "FaFajok");
+
+Router::get("FaKategoriak", "FaKategoriak");
+Router::post("FaKategoriak", "FaKategoriak");
+Router::delete("FaKategoriak", "FaKategoriak");
+Router::patch("FaKategoriak", "FaKategoriak");
+
+Router::get("Utcak", "Utcak");
+Router::post("Utcak", "Utcak");
+Router::delete("Utcak", "Utcak");
+Router::patch("Utcak", "Utcak");

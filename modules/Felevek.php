@@ -13,7 +13,7 @@ abstract class Felevek extends BaseModule
             array_push($idoszak["felevek"], $temp);
         }
         if (DEBUG) JSON::set("debug", array($params));
-        JSON::set("Felevek", $idoszak, self::$version);
+        JSON::set(get_class(), $idoszak, self::$version);
     }
 
     static public function post($params): void
@@ -25,7 +25,7 @@ abstract class Felevek extends BaseModule
                 'message' => "Bad Request, missing parameters (" . implode(", ", $req[1]) . ")",
                 'tip' => 'To use API, please read the documentation.'
             );
-            JSON::set("Felevek", $info, self::$version);
+            JSON::set(get_class(), $info, self::$version);
             return;
         }
         $perm = AuthModel::checkPermission($params);
@@ -59,7 +59,7 @@ abstract class Felevek extends BaseModule
             );
         }
         if (DEBUG) JSON::set("debug", array($params));
-        JSON::set("Felevek", $info, self::$version);
+        JSON::set(get_class(), $info, self::$version);
     }
 
     static public function patch($params): void
@@ -71,7 +71,7 @@ abstract class Felevek extends BaseModule
                 'message' => "Bad Request, missing parameters (" . implode(", ", $req[1]) . ")",
                 'tip' => 'To use API, please read the documentation.'
             );
-            JSON::set("Felevek", $info, self::$version);
+            JSON::set(get_class(), $info, self::$version);
             return;
         }
         $perm = AuthModel::checkPermission($params);
@@ -107,14 +107,14 @@ abstract class Felevek extends BaseModule
             );
         }
         if (DEBUG) JSON::set("debug", array($params));
-        JSON::set("Felevek", $info, self::$version);
+        JSON::set(get_class(), $info, self::$version);
     }
 
     static public function delete($params): void
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'deleteFelev']);
         if (!$req[0]) {
-            JSON::set("Felevek", array(
+            JSON::set(get_class(), array(
                 'code' => 400,
                 'message' => "Bad Request, missing parameters (" . implode(", ", $req[1]) . ")"
             ), self::$version);
@@ -150,6 +150,6 @@ abstract class Felevek extends BaseModule
             );
         }
         if (DEBUG) JSON::set("debug", array($params));
-        JSON::set("Authentication", $info, self::$version);
+        JSON::set(get_class(), $info, self::$version);
     }
 }

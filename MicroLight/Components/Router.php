@@ -50,4 +50,12 @@ abstract class Router
             }
         }
     }
+    public static function propfind($page, $instanceOfClass){
+        if ($_SERVER['REQUEST_METHOD'] === 'PROPFIND') {
+            if(self::parser()==$page){
+                $input = json_decode(file_get_contents('php://input'), true);
+                $instanceOfClass::propfind($input);
+            }
+        }
+    }
 }
