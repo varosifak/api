@@ -38,3 +38,8 @@ Router::patch("Utcak", "Utcak");
 Router::get("UsersUtcak", "UsersUtcak");
 Router::post("UsersUtcak", "UsersUtcak");
 Router::delete("UsersUtcak", "UsersUtcak");
+
+Router::get("FaRogzitesek", "FaRogzitesek");
+Router::post("FaRogzitesek", "FaRogzitesek");
+Router::delete("FaRogzitesek", "FaRogzitesek");
+Router::patch("FaRogzitesek", "FaRogzitesek");

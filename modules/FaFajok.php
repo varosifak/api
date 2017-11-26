@@ -113,7 +113,7 @@ abstract class FaFajok extends BaseModule
             if ($faFajPeldany == NULL) {
                 $info = array(
                     'code' => 404,
-                    'message' => "The tree type not found, so we can not delete."
+                    'message' => "The instance of ".get_class()." is not found, so we can not delete."
                 );
             } else {
                 R::trash($faFajPeldany);

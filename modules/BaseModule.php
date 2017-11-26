@@ -23,7 +23,7 @@ abstract class BaseModule
 
     abstract static public function delete($params);
 
-    abstract static public function put();
+    abstract static public function put($params, $input);
 
     abstract static public function patch($params);
 
