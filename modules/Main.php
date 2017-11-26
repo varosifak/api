@@ -1,9 +1,10 @@
 <?php
+
 abstract class Main extends BaseModule
 {
     public static $version = "1.0.1";
 
-    static public function get($params): void
+    static public function get($params)
     {
         $info = array(
             'code' => 400,

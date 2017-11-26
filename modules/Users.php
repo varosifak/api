@@ -4,7 +4,7 @@ abstract class Users extends BaseModule
 {
     public static $version = "1.0.0";
 
-    static public function get($params): void
+    static public function get($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev']);
         if (!$req[0]) {
@@ -37,7 +37,7 @@ abstract class Users extends BaseModule
         JSON::set(get_class(), $informations, self::$version);
     }
 
-    static public function post($params): void
+    static public function post($params)
     {
         $req = self::expectedParameters($params, ['neptun_kod', 'szektor_id', 'utca_id', 'felev', 'neptun', 'permission']);
         if (!$req[0]) {
@@ -83,7 +83,7 @@ abstract class Users extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function delete($params): void
+    static public function delete($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'neptun']);
         if (!$req[0]) {
@@ -127,7 +127,7 @@ abstract class Users extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function patch($params): void
+    static public function patch($params)
     {
         function save($params)
         {
@@ -201,19 +201,21 @@ abstract class Users extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function propfind($params): void
+    static public function propfind($params)
     {
         function protectColumns($columnList, $protecteds, $permission)
         {
             $columns = [];
             foreach ($columnList as $column) {
-                if (!in_array($column, $protecteds) || $permission>=1) {
+                if (!in_array($column, $protecteds) || $permission >= 1) {
                     array_push($columns, $column);
                 }
             }
             return $columns;
         }
-        function Listing($params, $permission){
+
+        function Listing($params, $permission)
+        {
             $columns = protectColumns($params["columns"], ['neptun', 'email'], $permission);
             if (empty($params["conditions"])) {
                 $params["conditions"] = "1=1";

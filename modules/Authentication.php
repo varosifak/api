@@ -4,7 +4,7 @@ abstract class Authentication extends BaseModule
 {
     public static $version = "1.0.0";
 
-    static public function get($params): void
+    static public function get($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev']);
         if (!$req[0]) {
@@ -37,7 +37,7 @@ abstract class Authentication extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function post($params): void
+    static public function post($params)
     {
         $req = self::expectedParameters($params, ['neptun_kod', 'szektor_id', 'utca_id', 'felev']);
         if (!$req[0]) {
@@ -86,7 +86,7 @@ abstract class Authentication extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function delete($params): void
+    static public function delete($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev']);
         if (!$req[0]) {

@@ -17,15 +17,15 @@ abstract class BaseModule
         return [$enabled, $listofnotfound];
     }
 
-    abstract static public function get($params): void;
+    abstract static public function get($params);
 
-    abstract static public function post($params): void;
+    abstract static public function post($params);
 
-    abstract static public function delete($params): void;
+    abstract static public function delete($params);
 
-    abstract static public function put(): void;
+    abstract static public function put();
 
-    abstract static public function patch($params): void;
+    abstract static public function patch($params);
 
-    abstract static public function propfind($params): void;
+    abstract static public function propfind($params);
 }

@@ -4,7 +4,7 @@ abstract class UsersUtcak extends BaseModule
 {
     public static $version = "1.0.0";
 
-    static public function get($params): void
+    static public function get($params)
     {
         $req = self::expectedParameters($params, ['neptun_kod', 'szektor_id', 'utca_id', 'felev']);
         if (!$req[0]) {
@@ -14,7 +14,6 @@ abstract class UsersUtcak extends BaseModule
                 'tip' => 'To use API, please read the documentation.'
             );
             JSON::set(get_class(), $info, self::$version);
-            return;
         }
 
         $perm = AuthModel::checkPermission($params);
@@ -51,7 +50,7 @@ abstract class UsersUtcak extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function post($params): void
+    static public function post($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'addneptun', 'addszektor', 'addutca', 'addfelev']);
         if (!$req[0]) {
@@ -98,7 +97,7 @@ abstract class UsersUtcak extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function delete($params): void
+    static public function delete($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'id']);
         if (!$req[0]) {

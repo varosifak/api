@@ -4,11 +4,11 @@ abstract class Utcak extends BaseModule
 {
     public static $version = "1.0.0";
 
-    static public function get($params): void
+    static public function get($params)
     {
-        if(!empty($params["id"])){
+        if (!empty($params["id"])) {
             $instance = R::find('Utcak', ' id = ?', [$params["id"]]);
-            if(count($instance)==0){
+            if (count($instance) == 0) {
                 JSON::set(get_class(), array(
                     'code' => 404,
                     'message' => "The street is not found."
@@ -16,14 +16,14 @@ abstract class Utcak extends BaseModule
                 return;
             }
             $results = [];
-            foreach ($instance as $result){
+            foreach ($instance as $result) {
                 array_push($results, $result);
             }
             $info = array(
                 'code' => 1,
                 'result' => $results[0]
             );
-        }else {
+        } else {
             $dataset = [];
             $list = R::findAll("Utcak", "ORDER BY id ASC");
             foreach ($list as $item) {
@@ -38,7 +38,7 @@ abstract class Utcak extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function post($params): void
+    static public function post($params)
     {
         $req = self::expectedParameters($params, ['neptun_kod', 'szektor_id', 'utca_id', 'felev', 'szektor_kod', 'utca_kod', 'utca_nev']);
         if (!$req[0]) {
@@ -64,14 +64,14 @@ abstract class Utcak extends BaseModule
             if ($alreadyExists) {
                 $info = array(
                     'code' => 0,
-                    'message' => "This ".get_class()." already in database."
+                    'message' => "This " . get_class() . " already in database."
                 );
             } else {
                 R::exec("INSERT INTO `Utcak` (`szektor_kod`, `utca_kod`, `utca_nev`) VALUES (?, ?, ?)",
                     [$params["szektor_kod"], $params["utca_kod"], $params["utca_nev"]]);
                 $info = array(
                     'code' => 1,
-                    'message' => "The ".get_class()." (" . $params["utca_nev"] . ") has been added into the database"
+                    'message' => "The " . get_class() . " (" . $params["utca_nev"] . ") has been added into the database"
                 );
             }
         } else {
@@ -83,7 +83,8 @@ abstract class Utcak extends BaseModule
         if (DEBUG) JSON::set("debug", array($params));
         JSON::set(get_class(), $info, self::$version);
     }
-    static public function delete($params): void
+
+    static public function delete($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'id']);
         if (!$req[0]) {
@@ -106,13 +107,13 @@ abstract class Utcak extends BaseModule
             if ($instance == NULL) {
                 $info = array(
                     'code' => 404,
-                    'message' => "The ".get_class()." not found, so we can not delete."
+                    'message' => "The " . get_class() . " not found, so we can not delete."
                 );
             } else {
                 R::trash($instance);
                 $info = array(
                     'code' => 200,
-                    'message' => "The ".get_class()." was successful deleted."
+                    'message' => "The " . get_class() . " was successful deleted."
                 );
             }
         } else {
@@ -124,7 +125,8 @@ abstract class Utcak extends BaseModule
         if (DEBUG) JSON::set("debug", array($params));
         JSON::set(get_class(), $info, self::$version);
     }
-    static public function patch($params): void
+
+    static public function patch($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'id', 'szektor_kod', 'utca_kod', 'utca_nev']);
         if (!$req[0]) {
@@ -154,12 +156,12 @@ abstract class Utcak extends BaseModule
                 R::store($record);
                 $info = array(
                     'code' => 1,
-                    'message' => "The ".get_class()." (" . $params["utca_nev"] . ") has been updated."
+                    'message' => "The " . get_class() . " (" . $params["utca_nev"] . ") has been updated."
                 );
             } else {
                 $info = array(
                     'code' => 0,
-                    'message' => "The ".get_class()." (" . $params["utca_nev"] . ") not found."
+                    'message' => "The " . get_class() . " (" . $params["utca_nev"] . ") not found."
                 );
             }
         } else {

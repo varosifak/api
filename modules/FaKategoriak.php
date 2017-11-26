@@ -4,11 +4,11 @@ abstract class FaKategoriak extends BaseModule
 {
     public static $version = "1.0.0";
 
-    static public function get($params): void
+    static public function get($params)
     {
-        if(!empty($params["id"])){
+        if (!empty($params["id"])) {
             $instance = R::find('FaKategoriak', ' id = ?', [$params["id"]]);
-            if(count($instance)==0){
+            if (count($instance) == 0) {
                 JSON::set(get_class(), array(
                     'code' => 404,
                     'message' => "The category is not found."
@@ -16,14 +16,14 @@ abstract class FaKategoriak extends BaseModule
                 return;
             }
             $results = [];
-            foreach ($instance as $result){
+            foreach ($instance as $result) {
                 array_push($results, $result);
             }
             $info = array(
                 'code' => 1,
                 'result' => $results[0]
             );
-        }else {
+        } else {
             $dataset = [];
             $list = R::findAll("FaKategoriak", "ORDER BY id ASC");
             foreach ($list as $item) {
@@ -38,7 +38,7 @@ abstract class FaKategoriak extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function post($params): void
+    static public function post($params)
     {
         $req = self::expectedParameters($params, ['neptun_kod', 'szektor_id', 'utca_id', 'felev', 'kategoria']);
         if (!$req[0]) {
@@ -83,7 +83,8 @@ abstract class FaKategoriak extends BaseModule
         if (DEBUG) JSON::set("debug", array($params));
         JSON::set(get_class(), $info, self::$version);
     }
-    static public function delete($params): void
+
+    static public function delete($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'id']);
         if (!$req[0]) {
@@ -125,7 +126,8 @@ abstract class FaKategoriak extends BaseModule
         if (DEBUG) JSON::set("debug", array($params));
         JSON::set(get_class(), $info, self::$version);
     }
-    static public function patch($params): void
+
+    static public function patch($params)
     {
         $req = self::expectedParameters($params, ['neptun_kod', 'szektor_id', 'utca_id', 'felev', 'id', 'kategoria']);
         if (!$req[0]) {

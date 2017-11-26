@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Version
  * The Mobile application is synchronized with
@@ -18,7 +19,7 @@ abstract class Version extends BaseModule
 {
     public static $version = "1.0.0";
 
-    static public function get($params): void
+    static public function get($params)
     {
         $req = self::expectedParameters($params, ['number']);
         if (!$req[0]) {
@@ -60,7 +61,7 @@ abstract class Version extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function post($params): void
+    static public function post($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'major', 'minor', 'patch', 'changes']);
         if (!$req[0]) {
@@ -72,22 +73,22 @@ abstract class Version extends BaseModule
             return;
         }
         $perm = AuthModel::checkPermission($params);
-        if($perm==-1){
+        if ($perm == -1) {
             $info = array(
                 'code' => -1,
                 'message' => "The authentication data of user is incorrect. Please log in again!"
             );
-        }else if($perm>=2){
+        } else if ($perm >= 2) {
             $alreadyExists = @R::findOne('Version',
                 ' major=? AND minor=? AND patch=?',
-                [$params["major"],$params["minor"],$params["patch"]]
+                [$params["major"], $params["minor"], $params["patch"]]
             );
-            if($alreadyExists){
+            if ($alreadyExists) {
                 $info = array(
                     'code' => 0,
-                    'message' => "This version already is in database: ".$params["major"].".".$params["minor"].".".$params["patch"]
+                    'message' => "This version already is in database: " . $params["major"] . "." . $params["minor"] . "." . $params["patch"]
                 );
-            }else {
+            } else {
                 R::exec('INSERT INTO `Version` (`major`, `minor`, `patch`, `changes`) VALUES (:major, :minor, :patch, :changes)',
                     [
                         ':major' => $params["major"],
@@ -104,7 +105,7 @@ abstract class Version extends BaseModule
                     'changes' => $params["changes"]
                 );
             }
-        }else{
+        } else {
             $info = array(
                 'code' => 0,
                 'message' => "You do not have enough permission for this."
@@ -113,7 +114,7 @@ abstract class Version extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function delete($params): void
+    static public function delete($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'major', 'minor', 'patch']);
         if (!$req[0]) {
@@ -125,30 +126,30 @@ abstract class Version extends BaseModule
             return;
         }
         $perm = AuthModel::checkPermission($params);
-        if($perm==-1){
+        if ($perm == -1) {
             $info = array(
                 'code' => -1,
                 'message' => "The authentication data of user is incorrect. Please log in again!"
             );
-        }else if($perm>=2){
+        } else if ($perm >= 2) {
             $alreadyExists = @R::findOne('Version',
                 ' major=? AND minor=? AND patch=?',
-                [$params["major"],$params["minor"],$params["patch"]]
+                [$params["major"], $params["minor"], $params["patch"]]
             );
-            if($alreadyExists){
+            if ($alreadyExists) {
                 R::exec("DELETE FROM Version WHERE major=? AND minor=? AND patch=?",
-                    [$params["major"],$params["minor"],$params["patch"]]);
+                    [$params["major"], $params["minor"], $params["patch"]]);
                 $info = array(
                     'code' => 1,
-                    'message' => "The version (".$params["major"].".".$params["minor"].".".$params["patch"].") has been removed from the database"
+                    'message' => "The version (" . $params["major"] . "." . $params["minor"] . "." . $params["patch"] . ") has been removed from the database"
                 );
-            }else {
+            } else {
                 $info = array(
                     'code' => 0,
-                    'message' => "The given version is not found in the database (".$params["major"].".".$params["minor"].".".$params["patch"].")"
+                    'message' => "The given version is not found in the database (" . $params["major"] . "." . $params["minor"] . "." . $params["patch"] . ")"
                 );
             }
-        }else{
+        } else {
             $info = array(
                 'code' => 0,
                 'message' => "You do not have enough permission for this."

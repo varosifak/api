@@ -4,7 +4,7 @@ abstract class Felevek extends BaseModule
 {
     public static $version = "1.0.0";
 
-    static public function get($params): void
+    static public function get($params)
     {
         $idoszak = array("felevek" => []);
         $felevek = R::findAll('Felevek', ' ORDER BY felev DESC ');
@@ -16,7 +16,7 @@ abstract class Felevek extends BaseModule
         JSON::set(get_class(), $idoszak, self::$version);
     }
 
-    static public function post($params): void
+    static public function post($params)
     {
         $req = self::expectedParameters($params, ['neptun_kod', 'szektor_id', 'utca_id', 'felev', 'createFelev', 'createInformaciok', 'createActive']);
         if (!$req[0]) {
@@ -62,7 +62,7 @@ abstract class Felevek extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function patch($params): void
+    static public function patch($params)
     {
         $req = self::expectedParameters($params, ['neptun_kod', 'szektor_id', 'utca_id', 'felev', 'updateFelev', 'updateNewFelev', 'updateInformaciok', 'updateActive']);
         if (!$req[0]) {
@@ -110,7 +110,7 @@ abstract class Felevek extends BaseModule
         JSON::set(get_class(), $info, self::$version);
     }
 
-    static public function delete($params): void
+    static public function delete($params)
     {
         $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'deleteFelev']);
         if (!$req[0]) {
