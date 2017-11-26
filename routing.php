@@ -34,3 +34,7 @@ Router::get("Utcak", "Utcak");
 Router::post("Utcak", "Utcak");
 Router::delete("Utcak", "Utcak");
 Router::patch("Utcak", "Utcak");
+
+Router::get("UsersUtcak", "UsersUtcak");
+Router::post("UsersUtcak", "UsersUtcak");
+Router::delete("UsersUtcak", "UsersUtcak");

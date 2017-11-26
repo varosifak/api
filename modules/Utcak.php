@@ -126,7 +126,7 @@ abstract class Utcak extends BaseModule
     }
     static public function patch($params): void
     {
-        $req = self::expectedParameters($params, ['neptun_kod', 'szektor_id', 'utca_id', 'felev', 'id', 'szektor_kod', 'utca_kod', 'utca_nev']);
+        $req = self::expectedParameters($params, ['auth_token', 'neptun_kod', 'szektor_id', 'utca_id', 'felev', 'id', 'szektor_kod', 'utca_kod', 'utca_nev']);
         if (!$req[0]) {
             $info = array(
                 'code' => 400,
