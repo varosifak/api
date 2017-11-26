@@ -1,8 +1,9 @@
 <?php
 abstract class AuthModel
 {
+    public static $version = "1.0.0";
     static public function checkAuthenticated($params) {
-        $result = R::findOne('Authentication',
+        $result = @R::findOne('Authentication',
             ' auth_token=? AND neptun_kod=? AND szektor_id=? AND utca_id=? AND felev=?',
             [$params["auth_token"], $params["neptun_kod"], $params["szektor_id"], $params["utca_id"], $params["felev"]]);
         return $result;
